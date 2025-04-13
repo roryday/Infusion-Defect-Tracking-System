@@ -67,7 +67,7 @@ SELECT
 
 FROM asb_data a 
 JOIN wnd_data w ON a.jero_id = w.jero_id
-LEFT JOIN ensj_staging_m_tb_einsp_njma061_crcr_isp_ifo_h AS nj6wndgap ON nj6wnd.eqp_nm=nj6wndgap.eqp_nm
+LEFT JOIN ensj_staging_m_tb_einsp_njma061_crcr_isp_ifo_h AS gap ON w.eqp_nm=w.eqp_nm
 
 WHERE 
     (CASE
