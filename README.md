@@ -1,11 +1,12 @@
 # 📊 CEF Infusion Defect Trace & Root Cause Dashboard
 
 This project presents a SQL-driven analytics workflow for tracking and investigating **infusion defects** in the **Assembly CEF process** of battery cell manufacturing.
+*Note that all data presented is sample data since real data is confidential,
 
 ---
 
 ## 🧪 Background
-In the **battery assembly process**, cells go through a **CEF (Critical Electrolyte Filling)** stage. During this stage, two primary defects have been identified:
+In the **battery assembly process**, cells go through a **CEF (Cylindrical cell Electrolyte Filling)** stage. During this stage, two primary defects have been identified:
 
 - 🔴 **Infusion Defect** (`dfct_cd = 5`): Electrolyte fails to properly fill due to upstream physical misalignment
 - 🟠 **Filling Defect** (`dfct_cd = 4`): Incomplete or partial filling
