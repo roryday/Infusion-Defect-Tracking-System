@@ -1,7 +1,7 @@
 # 📊 CEF Infusion Defect Trace & Root Cause Dashboard
 
 This project presents a SQL-driven analytics workflow for tracking and investigating **infusion defects** in the **Assembly CEF process** of battery cell manufacturing.
-*Note that all data presented is sample data since real data is confidential,
+*Note that all data presented is sample data since real data is confidential
 
 ---
 
@@ -17,7 +17,7 @@ The **infusion defect** is the focus of this project. It was discovered that the
 ---
 
 ## ⚙️ Root Cause Analysis
-Key findings from the engineering team:
+Key findings from engineering knowledge:
 - The **gap between the separator and anode** is a **critical-to-quality (CTQ)** parameter
 - This gap varies by **Winder equipment** and is captured in the `isp_ifo_h` table
 
@@ -40,7 +40,7 @@ This supports proactive **root cause identification**, reduces time-to-action, a
 
 ## 🧰 Tools & Tech
 - **SQL**: PostgreSQL-based multi-table joins for defect traceability
-- **Dashboards**: (Spotfire / Tableau / custom visualization — not shown here)
+- **Dashboards**: (Spotfire / Tableau )
 - **GitHub**: For project version control and portfolio presentation
 
 ---
@@ -55,8 +55,6 @@ defect_tracking_project/
 │   ├── asb_data_1000rows.csv   # Sample assembly data
 │   ├── wnd_data_1000rows.csv   # Winder process data
 │   └── isp_ifo_h_1000rows.csv  # Separator–anode gap (CTQ) data
-├── notebooks/
-│   └── analysis.ipynb          # Optional EDA and joins in pandas
 └── visuals/
     └── defect_dashboard.png    # Dashboard screenshot
 ```
@@ -75,4 +73,3 @@ Created by a **battery process engineer** with transition goals into **data anal
 
 ---
 
-Let me know if you want a visualization notebook or want to deploy this SQL on a dashboard framework.
