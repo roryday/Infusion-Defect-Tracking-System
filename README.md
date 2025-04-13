@@ -62,9 +62,9 @@ defect_tracking_project/
 ---
 
 ## 📈 Sample Insights
-- Infusion defects were **concentrated in Winder#3 and #7**, showing below-tolerance gap values
-- CTQ drift in separator–anode gap preceded defect spike by ~1 day
-- Real-time monitoring prevented escalation by alerting line engineers
+- Infusion defects were **concentrated in Winder#3 and #7**, showing defects only occured from certain cells from specific Winder equipment.
+- cells from these specific Winder Equpiment had relatively small gap compared to others, indicating CTQ parameter was not managed properly.
+- Real-time monitoring minimized the number of defects and gave real time reflection on the CTQ parameter, improving total yield of the production.
 
 ---
 
