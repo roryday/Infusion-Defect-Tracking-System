@@ -54,7 +54,7 @@ This supports proactive **root cause identification**, reduces time-to-action, a
 
 ## 🧠 SQL Skills Demonstrated
 
-📄 SQL script used: [`CEF_Infusion_to_WND.sql`](sql/CEF_Infusion_to_WND.sql)
+📄 SQL script used: [`CEF_Infusion_to_WND.sql`](SQL/CEF_Infusion_to_WND.sql)
 
 Key capabilities:
 - Multi-layered `WITH` CTEs for cleaner structure
