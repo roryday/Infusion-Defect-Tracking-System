@@ -46,14 +46,23 @@ This supports proactive **root cause identification**, reduces time-to-action, a
 
 ## 🧰 Tools & Tech
 
-- **SQL**: PostgreSQL-based multi-table joins for defect traceability  
-- **Tableau**: Interactive dashboard to visualize defect patterns and CTQ trends  
-- **GitHub**: Project tracking and portfolio publication
+- **SQL** (PostgreSQL): complex multi-table joins, string manipulation, `CASE` logic, subqueries, and filtering  
+- **Tableau**: dashboards with bar charts, box plots, dot plots, LOD expressions, and conditional formatting  
+- **GitHub**: project version control and portfolio publishing
 
 ---
 
-## 📂 Repository Structure
+## 🧠 SQL Skills Demonstrated
 
+📄 SQL script used: [`CEF_Infusion_to_WND.sql`](sql/CEF_Infusion_to_WND.sql)
+
+Key capabilities:
+- Multi-layered `WITH` CTEs for cleaner structure
+- Conditional formatting using `CASE` inside `SELECT` and `WHERE`
+- `SUBSTRING`, `POSITION`, and `LEFT` for string parsing from equipment codes
+- Use of `JOIN`s across MES and CTQ (gap) tables
+- Filtering logic with date math: `::date-2`, `::date+1`
+- Subqueries for reference metrics (`AVG(gap)` for each machine)
 
 ---
 
