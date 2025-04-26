@@ -1,17 +1,17 @@
-# 📊 CEF Infusion Defect Trace & Root Cause Dashboard
+# CEF Infusion Defect Trace & Root Cause Dashboard
 
 This project presents a SQL-driven analytics workflow for tracking and investigating **infusion defects** in the **Assembly CEF process** of battery cell manufacturing.  
-> ⚠️ *Note: All data and dashboards are based on **sample data** only, as the real data is confidential.*
+>*Note: All data and dashboards are based on **sample data** only, as the real data is confidential.*
 
 ---
 
-## 🧪 Background
+##  Background
 
 In the **battery assembly process**, cells go through a **CEF (Cylindrical cell Electrolyte Filling)** stage. During this stage, two primary defects have been identified:
 
-- 🔴 **Infusion Defect** (`dfct_cd = 5`): Electrolyte fails to properly fill due to upstream physical misalignment  
-- 🟠 **Filling Defect** (`dfct_cd = 4`): Incomplete or partial filling  
-- ✅ **OK Cell** (`dfct_cd = 0`): No detected issues  
+- **Infusion Defect** (`dfct_cd = 5`): Electrolyte fails to properly fill due to upstream physical misalignment  
+- **Filling Defect** (`dfct_cd = 4`): Incomplete or partial filling  
+- **OK Cell** (`dfct_cd = 0`): No detected issues  
 
 The **infusion defect** is the focus of this project. It was discovered that these defects are primarily linked to the **Winder process**, which directly precedes CEF.
 
@@ -32,7 +32,7 @@ When an infusion defect occurs at the CEF stage, it is necessary to:
 
 ---
 
-## 🔍 Project Objective
+## Project Objective
 
 To build a **dashboard and traceability system** that:
 
@@ -44,7 +44,7 @@ This supports proactive **root cause identification**, reduces time-to-action, a
 
 ---
 
-## 🧰 Tools & Tech
+## Tools & Tech
 
 - **SQL** (PostgreSQL): complex multi-table joins, string manipulation, `CASE` logic, subqueries, and filtering  
 - **Tableau**: dashboards with bar charts, box plots, dot plots, LOD expressions, and conditional formatting  
@@ -52,9 +52,9 @@ This supports proactive **root cause identification**, reduces time-to-action, a
 
 ---
 
-## 🧠 SQL Skills Demonstrated
+## SQL Skills Demonstrated
 
-📄 SQL script used: [`CEF_Infusion_to_WND.sql`](SQL/CEF_Infusion_to_WND.sql)
+SQL script used: [`CEF_Infusion_to_WND.sql`](SQL/CEF_Infusion_to_WND.sql)
 
 Key capabilities:
 - Multi-layered `WITH` CTEs for cleaner structure
@@ -66,7 +66,7 @@ Key capabilities:
 
 ---
 
-## 📈 Sample Insights
+## Sample Insights
 
 - Infusion defects were **concentrated in Winder#3 and #7**, indicating defect clustering by equipment  
 - These winders showed **lower average separator–anode gaps** and **higher variability**, making them root cause candidates  
@@ -74,15 +74,15 @@ Key capabilities:
 
 ---
 
-## 🖼️ Dashboard Preview
+##  Dashboard Preview
 
 ![Dashboard Screenshot](visuals/CEF_Infusion_Defect_Dashboard.png)
 
 ---
 
-## 👨‍🔧 Author
+## Author
 
-Created by a **battery process engineer** transitioning into a **data analytics role**.  
+Created by a **battery process engineer**.  
 This capstone bridges hands-on manufacturing experience with real-time data analysis and visualization.
 
 ---
