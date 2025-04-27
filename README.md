@@ -77,7 +77,7 @@ Key capabilities:
 ##  Dashboard Preview
 
 ![Dashboard Screenshot](visuals/CEF_Infusion_Defect_Dashboard.png)
-![Dashboard Screenshot](visuals/Dashboard-other example.png)
+![Dashboard Screenshot](visuals/Dashboard_other_example.png)
 
 ---
 
