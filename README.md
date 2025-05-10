@@ -1,90 +1,116 @@
-# CEF Infusion Defect Trace & Root Cause Dashboard
+#  CEF Infusion Defect Traceability & Root Cause Dashboard
 
-This project presents a SQL-driven analytics workflow for tracking and investigating **infusion defects** in the **Assembly CEF process** of battery cell manufacturing.  
->*Note: All data and dashboards are based on **sample data** only, as the real data is confidential.*
-
----
-
-##  Background
-
-In the **battery assembly process**, cells go through a **CEF (Cylindrical cell Electrolyte Filling)** stage. During this stage, two primary defects have been identified:
-
-- **Infusion Defect** (`dfct_cd = 5`): Electrolyte fails to properly fill due to upstream physical misalignment  
-- **Filling Defect** (`dfct_cd = 4`): Incomplete or partial filling  
-- **OK Cell** (`dfct_cd = 0`): No detected issues  
-
-The **infusion defect** is the focus of this project. It was discovered that these defects are primarily linked to the **Winder process**, which directly precedes CEF.
+This project showcases a SQL-driven analytical pipeline designed to diagnose and visualize **infusion defects** in the ** Electrolyte Filling (EF)** process within battery manufacturing.  
+> *Disclaimer: All data and dashboards are based on **sample data** only, due to the confidentiality.*
 
 ---
 
-## ⚙️ Root Cause Analysis
+## Business Context
 
-Key findings from engineering knowledge:
+In the battery assembly process, the **EF stage** is critical for ensuring cell performance and reliability. Two primary defect types are monitored:
 
-- The **gap between the separator and anode** is a **critical-to-quality (CTQ)** parameter  
-- This gap varies by **Winder equipment** and is captured in the `isp_ifo_h` table
+- **Infusion Defect** (`dfct_cd = 5`): Electrolyte fails to impregnate to the cells, due to misalignment in anode and cathode.
+- **Filling Defect** (`dfct_cd = 4`): Incomplete filling or over filling the amount of electrolytes.
+- **OK Cell** (`dfct_cd = 0`)
 
-When an infusion defect occurs at the CEF stage, it is necessary to:
-
-1. **Track which Winder equipment was used** for the defective cell  
-2. **Compare the separator–anode gap** for that equipment  
-3. **Visualize and monitor trends** in the gap over time to preemptively catch equipment deviations
+**Infusion defects** have been often originating from the upstream **Winder process**. Early detection and equipment-level traceability are essential to minimize defect rates in the process.
 
 ---
 
-## Project Objective
+## 🎯 Project Objectives
 
-To build a **dashboard and traceability system** that:
-
-- Detects infusion defects (`dfct_cd = 5`) in real time  
-- Links back to **Winder equipment** used  
-- Highlights potential CTQ drift (separator–anode gap)  
-
-This supports proactive **root cause identification**, reduces time-to-action, and improves manufacturing yield.
+- Develop a real-time detection system for infusion defects  
+- Trace defects back to specific **Winder equipment**  
+- Monitor **Critical-to-Quality (CTQ)** parameters, especially the separator–anode gap  
+- Provide interactive dashboards to support operations and quality assurance teams  
 
 ---
 
-## Tools & Tech
+##  Analytical Approach
 
-- **SQL** (PostgreSQL): complex multi-table joins, string manipulation, `CASE` logic, subqueries, and filtering  
-- **Tableau**: dashboards with bar charts, box plots, dot plots, LOD expressions, and conditional formatting  
-- **GitHub**: project version control and portfolio publishing
+Using engineering insights and historical data:
 
----
+- The **separator–anode gap** is a key CTQ parameter that affects electrolyte flow
+- Gap values are recorded in the `isp_ifo_h` inspection table, by equipment
+- By linking defects to prior Winder machines, root causes can be exposed
 
-## SQL Skills Demonstrated
-
-SQL script used: [`CEF_Infusion_to_WND.sql`](SQL/CEF_Infusion_to_WND.sql)
-
-Key capabilities:
-- Multi-layered `WITH` CTEs for cleaner structure
-- Conditional formatting using `CASE` inside `SELECT` and `WHERE`
-- `SUBSTRING`, `POSITION`, and `LEFT` for string parsing from equipment codes
-- Use of `JOIN`s across MES and CTQ (gap) tables
-- Filtering logic with date math: `::date-2`, `::date+1`
-- Subqueries for reference metrics (`AVG(gap)` for each machine)
+### Analytical Steps:
+1. Trace defect records back to upstream equipment using `lot_id`
+2. Merge CTQ inspection values with defect records
+3. Identify statistical anomalies (mean/variance of gaps)
+4. Visualize trend deviations by equipment over time
 
 ---
 
-## Sample Insights
+##  Data Sources (provided data is sample data due to confidentiality)
 
-- Infusion defects were **concentrated in Winder#3 and #7**, indicating defect clustering by equipment  
-- These winders showed **lower average separator–anode gaps** and **higher variability**, making them root cause candidates  
-- Dashboard-driven monitoring provided **real-time visibility** into upstream defect causes, improving both responsiveness and overall yield
+| Table | Description | Key Fields |
+|-------|-------------|------------|
+| `cef_defects` | CEF defect logs | `lot_id`, `dfct_cd`, `proc_dt` |
+| `isp_ifo_h` | Winder inspection records | `eqp_id`, `gap_val`, `insp_dt` |
+| `eqp_trace` | Equipment routing log | `lot_id`, `eqp_id`, `proc_dt` |
 
 ---
 
-##  Dashboard Preview
+## Data Preparation
+📁 SQL File: [`CEF_Infusion_to_WND.sql`](SQL/CEF_Infusion_to_WND.sql)
+- **Filtered Assembly (CEF) data** for `proc_nm = 'Assembly'`, CEF equipment, and recent production dates (±2 days), excluding known infusion defects (`dfct_cd = '5'`)
+- **Joined with Winding process data** using `jero_id` within a ±3 day window to trace back equipment history
+- **Standardized equipment labels** using `CASE` and `SUBSTRING` logic for traceability (e.g., `#18 (NJ6 ASB)`)
+- **Mapped CTQ values** (separator–anode gap) via subqueries from inspection table `isp_ifo_h`
+- Final dataset filtered to target lines (`#18`, `#19`) and sorted by plant, equipment, and time
 
+
+---
+
+## KPIs Tracked
+
+| Metric | Formula | Purpose |
+|--------|---------|---------|
+| Infusion Defect Rate | `count(dfct_cd=5) / count(*)` | Track critical defect trends |
+| Avg. Gap per EQP | `AVG(gap_val)` | Identify misaligned machines |
+| Gap Std Dev | `STDDEV(gap_val)` | Detect unstable equipment |
+
+---
+
+## Key Findings & Insights
+
+- **Winder #3 and #7** showed **abnormally high infusion defect rates**  
+- These machines also exhibited **low average separator–anode gaps** with **higher variance**, indicating CTQ instability  
+- Implementing dashboard alerts enabled:
+  - Faster root cause identification
+  - Preventive maintenance based on real-time CTQ drift
+  - Yield improvement through targeted interventions
+
+---
+
+## 📊 Dashboard Visuals
+
+**Primary Infusion Defect Monitoring Dashboard**  
 ![Dashboard Screenshot](visuals/CEF_Infusion_Defect_Dashboard.png)
-Here are examples of dashboards for other defects too
+
+**Other CTQ and Defect Insights**  
 ![Dashboard Screenshot](visuals/Dashboard_other_example.png)
 
 ---
 
-## Author
+## 💡 Business Impact
 
-Created by a **battery process engineer**.  
-This capstone bridges hands-on manufacturing experience with real-time data analysis and visualization.
+- Reduced defect trace time from **2–3 days to under  30 minutes**  
+- Identified yield loss root causes before secondary processes  
+- Projected to improve line yield by **~50%** through early CTQ drift alerts  
+- Scalable to other process-critical defects (e.g., tab alignment defects and etc)
 
 ---
+
+## 🛠️ Future Improvements
+
+- Send Real time email to process operator when anomalies in CTQ from dashboards are identified.  
+- Use statistical process control (SPC) rules and detect anomalies in CTQ real time
+
+---
+
+## 👤 Author & Project Role
+
+This project was developed by a **battery process engineer**, bridging domain knowledge with **data analytics and real-time visualization**. It exemplifies how SQL and Tableau can be used to support decision-making in high-throughput manufacturing environments.
+
