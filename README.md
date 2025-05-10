@@ -87,7 +87,7 @@ Using engineering insights and historical data:
 ## Dashboard Visuals
 
 **Primary Infusion Defect Monitoring Dashboard**  
-![Dashboard Screenshot](visuals/Infusion_Defect_dashboard.png)
+![Dashboard Screenshot](visuals/Infusion_Defect_Dashboard.png)
 (https://public.tableau.com/app/profile/junghyuk.kim/viz/CEFInfusionDefecttracking/CEFInfusionDefectTrackingDashbaord)
 
 **Other CTQ and Defect Insights**  
