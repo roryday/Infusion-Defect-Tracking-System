@@ -17,7 +17,7 @@ In the battery assembly process, the **EF stage** is critical for ensuring cell 
 
 ---
 
-## 🎯 Project Objectives
+## Project Objectives
 
 - Develop a real-time detection system for infusion defects  
 - Trace defects back to specific **Winder equipment**  
@@ -84,7 +84,7 @@ Using engineering insights and historical data:
 
 ---
 
-## 📊 Dashboard Visuals
+## Dashboard Visuals
 
 **Primary Infusion Defect Monitoring Dashboard**  
 ![Dashboard Screenshot](visuals/CEF_Infusion_Defect_Dashboard.png)
@@ -94,7 +94,7 @@ Using engineering insights and historical data:
 
 ---
 
-## 💡 Business Impact
+## Business Impact
 
 - Reduced defect trace time from **2–3 days to under  30 minutes**  
 - Identified yield loss root causes before secondary processes  
@@ -103,14 +103,14 @@ Using engineering insights and historical data:
 
 ---
 
-## 🛠️ Future Improvements
+## Future Improvements
 
 - Send Real time email to process operator when anomalies in CTQ from dashboards are identified.  
 - Use statistical process control (SPC) rules and detect anomalies in CTQ real time
 
 ---
 
-## 👤 Author & Project Role
+## Author & Project Role
 
 This project was developed by a **battery process engineer**, bridging domain knowledge with **data analytics and real-time visualization**. It exemplifies how SQL and Tableau can be used to support decision-making in high-throughput manufacturing environments.
 
